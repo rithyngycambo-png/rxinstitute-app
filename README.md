@@ -41,8 +41,8 @@ RXInstitute is a Laravel-based web app designed to provide CRUD operations for a
 
 ## 🖼️ Screenshots
 
-> *(Insert screenshots of your app UI here)*  
-> For example: `/screenshots/student-index.png`
+### 📄 Student List Page
+![Student Index](screenshots/student-index.png)
 
 ---
 
