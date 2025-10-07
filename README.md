@@ -43,6 +43,9 @@ RXInstitute is a Laravel-based web app designed to provide CRUD operations for a
 
 ### 📄 Student List Page
 ![Student Index](screenshots/student-index.jpg)
+![Student Index](screenshots/lecturer-index.jpg)
+![Student Index](screenshots/department-index.jpg)
+![Student Index](screenshots/enrollment-index.jpg)
 
 ---
 
