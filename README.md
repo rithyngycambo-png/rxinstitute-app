@@ -48,11 +48,12 @@ RXInstitute is a Laravel-based web app designed to provide CRUD operations for a
 
 ## 👤 Author
 
-**Rithy Ng**  
-📧 Email: [rithyngycambo@gmail.com](mailto:rithyngycambo@gmail.com)  
-📞 Phone/WhatsApp: +855 [93777248]  
-📍 Phnom Penh, Cambodia  
-💬 Telegram: [@Rithy_N](https://t.me/yourusername)
+**Rithy Ngy**  
+📧 Email: rithyngycambo@gmail.com
+📱 Phone: (+855) 093 777 248
+📍 Location: Phnom Penh, Cambodia
+💬 Telegram: @N_Rithy
+📞 WhatsApp: Chat with me
 
 ---
 
