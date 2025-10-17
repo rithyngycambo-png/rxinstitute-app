@@ -1,31 +1,105 @@
 @extends('layout')
 @section('content')
-<!-- Show form for student to input data into it. -->
-<div class="card">
-    <div class="card-header">Enrollments Page</div>
-    <div class="card-body">
 
-        <form action="{{ url('enrollments') }}" method="post">
-            {!! csrf_field() !!}
-            <label>EnrollID</label><br>
-            <input type="text" name="enrollID" id="enrollID" class="form-control"><br>
+    <div class="d-flex justify-content-center align-items-center" style="min-height: 95vh; background-color: #f8f9fa;">
+        <div class="card shadow-lg border-0 rounded-4" style="width: 700px;">
+            <div class="card-header text-white text-center fw-bold fs-5" style="background-color: #0B1E53;">
+                🧾 Add New Enrollment
+            </div>
 
-            <label>DepartmentID</label><br>
-            <input type="text" name="departmentID" id="departmentID" class="form-control"><br>
+            <div class="card-body p-4">
 
-            <label>StudentID</label><br>
-            <input type="text" name="studentID" id="studentID" class="form-control"><br>
+                <!-- {{-- Validation Errors --}}
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul class="mb-0">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif -->
 
-            <label>Join Date</label><br>
-            <input type="text" name="joinDate" id="joinDate" class="form-control"><br>
+                {{-- Enrollment Form --}}
+                <form action="{{ url('enrollments') }}" method="post">
+                    @csrf
 
-            <label>Fee</label><br>
-            <input type="text" name="fee" id="fee" class="form-control"><br>
+                    <div class="mb-3">
+                        <label for="enrollNo" class="form-label fw-semibold">Enrollment Number</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light">
+                                <i class="bi bi-hash text-primary"></i>
+                            </span>
+                            <input type="text" name="enrollNo" id="enrollNo" class="form-control form-control-lg"
+                                placeholder="Enter enrollment ID" required>
+                        </div>
+                    </div>
 
-            <input type="submit" value="Save" class="btn btn-success"><br>
-        </form>
+                    <div class="mb-3">
+                        <label for="studentID" class="form-label fw-semibold">Student ID</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light">
+                                <i class="bi bi-person-fill text-success"></i>
+                            </span>
+                            <input type="text" name="studentID" id="studentID" class="form-control form-control-lg"
+                                placeholder="Enter student ID" required>
+                        </div>
+                        {{-- show validation message below the field --}}
+                        @error('studentID')
+                            <div class="invalid-feedback d-block">
+                                ⚠️ {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
 
+                    <div class="mb-3">
+                        <label for="departmentID" class="form-label fw-semibold">Department</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light">
+                                <i class="bi bi-building text-warning"></i>
+                            </span>
+                            <select name="departmentID" id="departmentID" class="form-select form-select-lg" required>
+                                <option value="">Select Department</option>
+                                @foreach ($departments as $id => $name)
+                                    <option value="{{ $id }}">{{ $name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="joinDate" class="form-label fw-semibold">Join Date</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light">
+                                <i class="bi bi-calendar-date text-danger"></i>
+                            </span>
+                            <input type="date" name="joinDate" id="joinDate" class="form-control form-control-lg" required>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="fee" class="form-label fw-semibold">Enrollment Fee</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light">
+                                <i class="bi bi-cash-stack text-success"></i>
+                            </span>
+                            <input type="text" name="fee" id="fee" class="form-control form-control-lg"
+                                placeholder="Enter total fee" required>
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-success px-5 py-2 fw-semibold">
+                            <i class="bi bi-check-circle me-2"></i> Save Enrollment
+                        </button>
+                        <a href="{{ url('enrollments') }}" class="btn btn-outline-secondary px-4 py-2 ms-2">
+                            <i class="bi bi-arrow-left"></i> Cancel
+                        </a>
+                    </div>
+                </form>
+
+            </div>
+        </div>
     </div>
-</div>
 
-@stop
+@endsection

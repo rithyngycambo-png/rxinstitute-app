@@ -12,8 +12,12 @@ Route::get('/', function () {
     return view('layout');
 });
 
+Route::view('/', 'home')->name('home');
+
 Route::resource('/students', StudentController::class); /* instead of writing all, just this single line is engouh */
 Route::resource('/lecturers', LecturerController::class); /* instead of writing all, just this single line is engouh */
 Route::resource('/departments', DepartmentController::class); /* instead of writing all, just this single line is engouh */
 Route::resource('/enrollments', EnrollmentController::class); /* instead of writing all, just this single line is engouh */
- 
+
+
+Route::view('/aboutUS', 'aboutUS')->name('aboutUS');

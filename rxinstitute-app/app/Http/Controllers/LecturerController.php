@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\RedirectResponse;  
+use Illuminate\Http\RedirectResponse;
+use App\Http\Requests\LecturerRequest;
 use Illuminate\Http\Response;
 use App\Models\Lecturer;
 use Illuminate\view\view;
@@ -30,11 +31,11 @@ class LecturerController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): RedirectResponse 
+    public function store(LecturerRequest $request): RedirectResponse
     {
-        $input = $request->all(); /* Get all input data from the request */
-        Lecturer::create($input); /* Create a new Lecturer record in the database */
-        return redirect('/lecturers')->with('flash_message', 'Lecturer Addedd!'); /* Redirect to the Lecturers list with a flash message */
+
+        Lecturer::create($request->validated()); // Use validated data only
+        return redirect('/lecturers')->with('flash_message', 'Lecturer Added!');
     }
 
     /**
@@ -44,7 +45,7 @@ class LecturerController extends Controller
     public function show(string $id): View
     {
         $lecturers = Lecturer::find($id); /* Find the Lecturer by ID */
-        return view('lecturers.show')-> with('lecturers', $lecturers); /* Return the view with the Lecturer details */
+        return view('lecturers.show')->with('lecturers', $lecturers); /* Return the view with the Lecturer details */
     }
 
     /**
@@ -60,18 +61,18 @@ class LecturerController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id): RedirectResponse
+    public function update(LecturerRequest $request, string $id): RedirectResponse
     {
-        $lecturer = Lecturer::find($id);
-        $input = $request->all();
-        $lecturer->update($input);
-        return redirect('lecturers')->with('flash_message', 'Lecturer Updated!'); 
+        $lecturer = Lecturer::findOrFail($id); // safer: throws 404 if not found
+        $lecturer->update($request->validated()); // ✅ only update validated data
+
+        return redirect('/lecturers')->with('flash_message', 'Lecturer Updated!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id) : RedirectResponse
+    public function destroy(string $id): RedirectResponse
     {
         Lecturer::destroy($id);
         return redirect('lecturers')->with('flash_message', 'Lecturer deleted!');

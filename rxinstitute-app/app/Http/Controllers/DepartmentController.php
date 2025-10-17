@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Requests\DepartmentRequest;
 use Illuminate\Http\RedirectResponse; 
 use Illuminate\Http\Request;
 use App\Models\Department;
@@ -28,10 +29,10 @@ class DepartmentController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): RedirectResponse 
+    public function store(DepartmentRequest $request): RedirectResponse 
     {
-        $input = $request->all(); /* Get all input data from the request */
-        Department::create($input); /* Create a new Department record in the database */
+        // $input = $request->all(); /* Get all input data from the request */
+        Department::create($request->validated()); /* Create a new Department record in the database */
         return redirect('/departments')->with('flash_message', 'Department Added!'); /* Redirect to the Lecturers list with a flash message */
     }
 
@@ -57,11 +58,11 @@ class DepartmentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id): RedirectResponse
+    public function update(DepartmentRequest $request, string $id): RedirectResponse
     {
-        $department = Department::find($id);
+        $department = Department::findOrFail($id);
         $input = $request->all();
-        $department->update($input);
+        $department->update($request->validated());
         return redirect('departments')->with('flash_message', 'Department Updated!'); 
     }
 
