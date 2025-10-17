@@ -39,11 +39,6 @@ RXInstitute is a Laravel-based web app designed to provide CRUD operations for a
 
 ---
 
-## 📸 Screenshots
-| Home | Cart |
-|---|---|
-![Home](public/student.jpg)
-
 ## 👤 Author
 
 **Rithy Ngy**  
