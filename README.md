@@ -68,17 +68,17 @@ RXInstitute is a Laravel-based web app designed to provide CRUD operations for a
 ## 🚀 Getting Started
 
 ``bash
-# Clone the repository
+### Clone the repository
 git clone https://github.com/yourusername/rxinstitute-app.git
 
-# Install dependencies
+### Install dependencies
 composer install
 
-# Copy .env file
+### Copy .env file
 cp .env.example .env
 
-# Update DB settings in .env
-# Then run:
+### Update DB settings in .env
+### Then run:
 php artisan key:generate
 php artisan migrate
 php artisan serve
@@ -86,4 +86,5 @@ php artisan serve
 ---
 
 ## Demo Document
-[RxInstitute Demo File.pdf](https://github.com/user-attachments/files/22840874/RxInstitute.Demo.File.pdf)
+[RxInstitute Demo File.pdf](https://github.com/user-attachments/files/22967698/RxInstitute.Demo.File.pdf)
+
